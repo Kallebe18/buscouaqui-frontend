@@ -3,7 +3,13 @@ import styled from 'styled-components'
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
-  background-color: #612a92;
+  background-color: #3698FF;
+`
+
+export const HeaderTitle = styled.h1`
+  margin: 20px;
+  color: #fff;
+  text-align: center;
 `
 
 export const ContentContainer = styled.section`

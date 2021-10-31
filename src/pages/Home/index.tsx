@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Header } from "../../components/Header";
 import { ProductCard } from "../../components/ProductCard";
-import { ContentContainer, HomeContainer, ProductList, ProductListHeader } from "./styles";
+import { ContentContainer, HomeContainer, ProductList, ProductListHeader, SearchArtContainer } from "./styles";
+import SearchArt from '../../assets/search_art.svg'
+import { comparePriceDec, comparePriceInc } from "../../utils";
 
 export function Home() {
-  const [searchResult, setSearchResults] = useState<any | undefined>();
+  const [searchResults, setSearchResults] = useState<any>();
 
   function shuffle(array: any[]) {
     let currentIndex = array.length,  randomIndex;
@@ -24,6 +26,24 @@ export function Home() {
     return array;
   }
 
+  const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.currentTarget.value
+    console.log(searchResults.results)
+    console.log(value)
+    if (value === '2') {
+      setSearchResults({
+        ...searchResults,
+        results: searchResults.results.sort(comparePriceInc)
+      })
+    }
+    if (value === '3') {
+      setSearchResults({
+        ...searchResults,
+        results: searchResults.results.sort(comparePriceDec)
+      })
+    }
+  }
+
   return (
     <>
       <Header setResults={(data) => {
@@ -35,17 +55,30 @@ export function Home() {
       <HomeContainer>
         <ContentContainer>
           {
-            searchResult !== undefined && 
+            searchResults !== undefined ?
               <>
                 <ProductListHeader>
-                  <h2>{searchResult.query}</h2>
-                  <p style={{ fontSize: 12 }}>{searchResult.count} resultados encontrados</p>
+                  <div>
+                    <h2>{searchResults.query}</h2>
+                    <p style={{ fontSize: 12 }}>{searchResults.count} resultados encontrados</p>
+                  </div>
+                  <div>
+                    <label htmlFor="filters">Filtro:{' '}</label>
+                    <select onChange={handleFilter} name="filters" id="filters">
+                      <option value="1">Sem Filtro</option>
+                      <option value="2">Menor Preço</option>
+                      <option value="3">Maior Preço</option>
+                    </select>
+                  </div>
                 </ProductListHeader>
                 <ProductList>
-                  {searchResult.results.map((result: any) => (
+                  {searchResults.results.map((result: any) => (
                     <ProductCard data={result}/>
                   ))}
                 </ProductList>
+              </> : 
+              <>
+                <SearchArtContainer src={SearchArt} alt="Search Art"/>
               </>
           }
         </ContentContainer>

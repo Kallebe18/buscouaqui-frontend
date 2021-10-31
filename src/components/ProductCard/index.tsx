@@ -1,3 +1,4 @@
+import { currencyFormat } from "../../utils";
 import { Container, Image, ImageContainer, InfoContainer, Name, Price, Store } from "./styles";
 
 interface ProductCardProps {
@@ -12,7 +13,7 @@ export function ProductCard({ data }: ProductCardProps) {
       </ImageContainer>
       <InfoContainer>
         <Name>{data.name}</Name>
-        <Price>{data.price}</Price>
+        <Price>{currencyFormat(Number(data.price))}</Price>
         <Store>{data.store}</Store>
       </InfoContainer>      
     </Container>

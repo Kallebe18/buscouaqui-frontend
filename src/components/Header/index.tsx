@@ -2,7 +2,10 @@ import { useState } from 'react'
 import {
   FaSearchDollar
 } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 import { api } from '../../services/api'
+import { TextBlock } from '../../stylesGlobal'
+import { Loader } from '../Loader'
 
 import {
   HeaderContainer, 
@@ -10,7 +13,8 @@ import {
   TopContentContainer, 
   BottomContentContainer, 
   SearchForm, 
-  Input
+  Input,
+  HeaderTitle
 } from './styles'
 
 interface HeaderProps {
@@ -22,7 +26,11 @@ export function Header({ setResults }: HeaderProps) {
   const [query, setQuery] = useState('')
 
   const handleSearch = async () => {
+    console.log(query)
     if (!loading) {
+      if (!query) {
+        return toast.error('Digite algo antes de pesquisar.')
+      }
       setLoading(true)
       const response = await api.get('/search', {
         params: {
@@ -39,10 +47,7 @@ export function Header({ setResults }: HeaderProps) {
     <HeaderContainer>
       <ContentContainer>
         <TopContentContainer>
-          <h1 style={{
-            margin: 20,
-            color: '#fff'
-          }}>Pesquise pelos seus eletrônicos em um só lugar!</h1>
+          <HeaderTitle>Pesquise seus produtos <TextBlock>em um só lugar!</TextBlock></HeaderTitle>
           <SearchForm onSubmit={() => {}}>
             <Input
               placeholder='Digite aqui sua busca...'
@@ -71,12 +76,7 @@ export function Header({ setResults }: HeaderProps) {
 
         </BottomContentContainer>
       </ContentContainer>
-      {loading && <div style={{
-        position: 'absolute',
-        height: '100%',
-        width: '100%',
-        backgroundColor: '#999'
-      }}>Carregando</div>}
+      {loading && <Loader title="Buscando produtos..."/>}
     </HeaderContainer>
   )
 }
