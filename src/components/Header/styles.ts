@@ -1,16 +1,17 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
-  background-color: #3698FF;
-`
+  background-color: #3698ff;
+  height: 200px;
+`;
 
 export const HeaderTitle = styled.h1`
   margin: 20px;
   color: #fff;
   text-align: center;
-`
+`;
 
 export const ContentContainer = styled.section`
   display: flex;
@@ -18,17 +19,16 @@ export const ContentContainer = styled.section`
   align-items: center;
   padding: 10px 20px;
   width: 80%;
-  @media(min-width: 1200px) {
+  @media (min-width: 1200px) {
     width: 600px;
   }
-`
+`;
 
 export const TopContentContainer = styled.div`
   width: 100%;
-`
+`;
 
-export const BottomContentContainer = styled.div`
-`
+export const BottomContentContainer = styled.div``;
 
 export const SearchForm = styled.div`
   display: flex;
@@ -38,10 +38,10 @@ export const SearchForm = styled.div`
   background-color: red;
   border-radius: 25px;
   background-color: #fff;
-  -webkit-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.4); 
-  box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.4);
+  -webkit-box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-`
+`;
 
 export const Input = styled.input`
   color: #999;
@@ -51,4 +51,4 @@ export const Input = styled.input`
   padding: 0 0 0 30px;
   outline: none;
   border: none;
-`
+`;

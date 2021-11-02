@@ -23,10 +23,11 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 `
 
 export const Image = styled.img`
-  max-width: 150px;
+  height: 100%;
 `
 
 export const InfoContainer = styled.div`
@@ -47,12 +48,20 @@ export const PriceContainer = styled.div`
 
 export const Price = styled.p`
   margin: 20px 0;
+  color: #777;
 `
 
-export const StoreContainer = styled.p`
-  
+export const StoreContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const StoreImage = styled.img`
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
 `
 
 export const Store = styled.p`
-  
+  font-size: 12px;
 `
